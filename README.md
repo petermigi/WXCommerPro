@@ -492,3 +492,45 @@ Page({
   }
 })
 ```
+
+
+## 自定义组件中observer函数的应用
+在开发自定义组件时，我们有时候需要对从服务器返回来的数据进行二次处理，那么该如何做呢？请看下面的代码
+```js
+// components/epsoide/index.js
+Component({
+  /**
+   * 组件的属性列表
+   */
+  properties: {
+    index: {
+      type: String,
+      observer:function(newVal,oldVal,changedPath){
+        let val = newVal<10?'0'+newVal:newVal
+        // 永远不要在observer中修改自身属性值，否则会出现无限递归调用
+        // 因为这样的话newVal和oldVal的值会永远都在变化，从而导致内存溢出
+        this.setData({
+          _index:val
+        })
+      }
+    }
+  },
+  /**
+   * 组件的初始数据
+   */
+  data: { 
+    year:0,
+    month: '',
+    _index:''
+  },
+  attached:function(){
+
+  },
+  /**
+   * 组件的方法列表
+   */
+  methods: {
+
+  }
+})
+```
