@@ -26,5 +26,13 @@ Page({
   onLike: function(e) {
     let behavior = e.detail.behavior
     likeModel.like(behavior, this.data.classic.id,this.data.classic.type)
+  },
+  // 下一期刊
+  onNext: function (event) {
+    
+  },
+  // 下一期刊
+  onPrevious: function (event) {
+    
   }
 })
