@@ -534,3 +534,59 @@ Component({
   }
 })
 ```
+
+
+## 组件的Behavior行为
+在组件中，其实也经常存在许多相同的对象、方法以及变量。假如每写一个组件，就要重新定义，那岂不是麻烦的一批，因此Behavior这个对象就出现了。它的作用就是实现组件内的代码复用，俗称继承。下面我们来定义一个公共的behavior组件
+```js
+const classicBeh = Behavior({
+  properties: {
+    img: String,
+    content: String
+  },
+  attached: function() {
+
+  },
+  data: {
+
+  },
+  methods: {
+
+  }
+})
+
+export {
+  classicBeh
+}
+```
+
+接着我们在组件中这么来使用即可
+```js
+// components/classic/movie/index.js
+import { classicBeh } from '../classic-beh.js'
+
+Component({
+  /**
+   * 组件的属性列表 
+   */
+  // 多继承
+  behaviors: [classicBeh],
+  properties: {
+  },
+
+  /**
+   * 组件的初始数据
+   */
+  data: {
+
+  },
+
+  /**
+   * 组件的方法列表
+   */
+  methods: {
+
+  }
+})
+
+```
