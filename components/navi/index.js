@@ -24,16 +24,17 @@ Component({
    */
   methods: {
     onLeft: function(event) {
+      // 如果期刊不是最后一期
       if (!this.properties.latest) {
         this.triggerEvent('left', {}, {})
       }
     },
 
     onRight: function(event) {
+      // 如果期刊不是最新一期
       if (!this.properties.first) {
         this.triggerEvent('right', {}, {})
       }
     }
-
   }
 })
